@@ -1,0 +1,39 @@
+# boot the first entry by default
+# default 0
+# if there's a problem booting the default entry, boot the second entry
+# fallback 1
+# boot default after 30 sec
+# timeout 30
+
+title   OSD 3
+        root    (fd0)
+        kernel  /osd3.x
+
+title   OSD 4
+        root    (fd0)
+        kernel  /osd4.x
+
+title   OSD 5
+        root    (fd0)
+        kernel  /osd5.x
+
+title   OSD 6
+        root    (fd0)
+        kernel  /osd6.x
+
+title   OSD 7
+        root    (fd0)
+        kernel  /osd7.x
+
+title   OSD 8
+        root    (fd0)
+        kernel  /osd8.x
+
+title   OSD 9
+        root    (fd0)
+        kernel  /osd9.x
+
+title   Boot from C: drive
+        root    (hd0,1)
+        makeactive
+        chainloader +1

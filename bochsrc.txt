@@ -1,0 +1,15 @@
+megs: 32
+romimage: file=/usr/share/bochs/BIOS-bochs-latest
+vgaromimage: file=/usr/share/bochs/VGABIOS-elpin-2.40
+floppya: 1_44=/dev/loop0, status=inserted
+boot: a
+log: bochsout.txt
+mouse: enabled=0
+clock: sync=realtime
+cpu: ips=500000
+magic_break: enabled=1
+display_library: x, options="gui_debug"
+  debug: action=ignore
+  info: action=report
+  error: action=report
+  panic: action=ask
