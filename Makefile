@@ -5,10 +5,6 @@ include config_defines.txt
 
 INCLUDE:= -I/lib/modules/`uname -r`/build/include -I/lib/modules/`uname -r`/build/arch/x86/include/ -I/usr/lib/gcc/i486-linux-gnu/4.4/include/
 
-DEFINE:= -D __KERNEL__ -D CONFIG_X86_32 -D CONFIG_X86_L1_CACHE_SHIFT=5 -D CONFIG_X86_L1_CACHE_BYTES=64 -D CONFIG_PAGE_OFFSET=0xC0000000 -D CONFIG_ZONE_DMA
-
-DEFINE2:= -D CONFIG_PARAVIRT -D CONFIG_M586 -D CONFIG_X86_32_LAZY_GS -D CONFIG_FLAT_NODE_MEM_MAP -D CONFIG_X86_INTERNODE_CACHE_BYTES=64 -D CONFIG_ARCH_POPULATES_NODE_MAP=y -D CONFIG_MMU -D CONFIG_ARCH_HAS_CACHE_LINE_SIZE=y
-
 FLAGS:= -g -m32 -c -msoft-float -O -fno-stack-protector -fno-builtin-memset-nostdinc -D __KERNEL__ $(CONFIG_DEFINES) $(INCLUDE) -Wstrict-prototypes -Wmissing-prototypes -Wsystem-headers -Wall -W
 
 BUILD_DIR:= ./build/
