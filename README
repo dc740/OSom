@@ -1,4 +1,93 @@
-This is a simple OS implementation for lguest32. The documentation is not ready, but the OS is a work in progress.
+OSom
+An lguest32 guest operative system.
+
+Introduction
+
+The purpose of  this little guest is to give students an easy way to put Operative Systems theory on practice. Lguest32 gives the student the possibility to load a real operative system without having to install PC emulators or reboot their system on each test.
+
+Preparation
+To start using the project you need two things:
+A working PC running Linux 2.6.34 kernel, with source code and header files correctly installed.
+“lg” module compiled and installed in the system.
+
+This document will not cover the kernel compilation process, but you MUST read “/usr/src/linux-2.6.34/Documentation/lguest/lguest.txt” before compiling. It has the required steps to successfully compile a lguest32 enabled linux kernel.
+Also note that you will have to use a 32 bit linux kernel, since OSom does not support 64 bits, and lguest64 is not included in the main kernel sources anyway.
+Getting the source code
+To get the source code (read acccess only) start a command line and enter:
+	git clone git://github.com/dc740/OSom.git
+	cd OSom 
+
+If you have write access to the repository you can use:
+	#Download the code
+	git clone git@github.com:dc740/OSom.git
+	cd OSom
+	# add the remote server so we can push to it later
+	git remote add origin git@github.com:dc740/OSom.git
+
+And also use the following commands to commit your changes:
+	# Commit to your local repository
+	git commit -a -m “my commit message”
+	# Upload your changes to the remote repo
+	git push origin master
+
+Compiling the project for the first time
+
+You will need the kernel source, or you won't get far. 
+All you need to type to compile the project is:
+	make
+
+Makefile defines the include paths directly, so you may have to take a look at the first two lines to fix include issues.
+Also, git doesn't support empty directories, so if you don't have a folder called “build”, the make command will complain and you will get an error message. Just remember to manually create it in the source root.
+
+Compiling lguest program to load guests
+
+Now you are just one step behind being able to run OSom. Cd into “/usr/src/linux/Documentation/lguest”
+You will find the required files there.
+To compile and install it type
+	make
+	sudo cp lguest /usr/sbin
+
+Running OSom for the first time!
+At this stage we are ready to run OSom, so all we need to know is how to use the included scripts.
+
+Before trying to run teh script be sure that “lg” module is loaded:
+	lsmod | grep lg
+And if it's not, then load it with
+	sudo modprobe lg
+
+Here is a brief description for each script:
+
+run.sh:
+Invokes lguest and runs the compiled OSom binary. You don't need to pass any paramaters to it but you MUST run it as root.
+
+terminate.sh:
+Kills all lguest instances. Don't worry, it's safe to use, but you won't be able to type anything in the command line where lguest was running, there is some kind of bug. You will have to close it and use a new one. Using a terminal emulator is recommended.
+
+update bochs.sh && br_bochs_run.sh:
+Obsolete scripts. There is a way to try to run OSom inside a real machine, with real hardware... or  use Bochs to emulate it. But the code is not ready and it's not supported, so try it at your own risk. It will NOT work, guaranteed.
+
+
+Basic commands
+Even though the OS is far from being usable, there is a small command line shell that I wrote for testing purposes. It basically allows you to shutdown OSom, test interruptions and generate awesome pagefaults.
+The basic commands are:
+shutdown: does what it says. It's a clean power down.
+ss: prints ss register on screen
+cs: prints cs register on screen
+irq: sets a timer and tells lguest to generate an interrupt after a fixed time. It's used to test interrupt handlers and lguest timer.
+emilio: this command generates a page fault and stops OSom gracefully.
+test: prints a test message on screen
+
+All of these commands are just for testing purposes, just like the shell itself, so they WILL be removed in future revisions.
+
+Understanding how it works
+TODO:
+finish this document
+
+
+Bibliography:
+http://philsturgeon.co.uk/news/2009/05/Tips-for-a-Subversion-addict-learning-Git
+http://stackoverflow.com/questions/315911/git-for-beginners-the-definitive-practical-guide
+Lguest Bible - /usr/src/linux/drivers/lguest/README
 
 Contact information:
 emilio[d0t]moretti[4t]gmail[d0t]com

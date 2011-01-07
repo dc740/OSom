@@ -41,7 +41,7 @@ struct lguest_data lguest_data = {
 };
 
 unsigned long mem_top;
-char welcome[] = "\n\nWelcome!\nThis is PuppyToy\nA minimal guest for Lguest\n\n";
+char welcome[] = "\n\nWelcome!\nThis is OSom\nA minimal guest for Lguest\n\n";
 char status_clean_buff[] = "\nClearing input buffer...";
 
 	
